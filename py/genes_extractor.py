@@ -8,6 +8,7 @@ def get_params():
     parser.add_argument("-g", "--genome", required=True)
     parser.add_argument("-c", "--coords", required=True)
     parser.add_argument("-G", "--germline", default='../data/germline_new/Homo_sapiens/ig')
+    parser.add_argument("-o", "--outfile", required=True)
     parser.add_argument("--rss-len", dest="rss_len", default=7+23+9)
     params = parser.parse_args()
     return params
@@ -43,13 +44,22 @@ def unflatten_dict(germline):
     return res
 
 
+def export_genes(genes, outfile):
+    with open(outfile, 'w') as f:
+        for gene_id in genes:
+            gene = genes[gene_id]
+            gene = gene[0] + gene[1]
+            print('>'+gene_id+'\n'+gene, file=f)
+
+
+
 def main():
     params = get_params()
     genome = str(list(SeqIO.parse(params.genome, 'fasta'))[0].seq)
     coords = read_exact_positions(params.coords)
     germline = unflatten_dict(get_germline(params.germline))
     genes = extract_genes(genome, coords, germline, params.rss_len)
-    print(genes)
+    export_genes(genes, params.outfile)
 
 
 
