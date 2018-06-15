@@ -117,6 +117,7 @@ def main():
     param_dct = read_param(params.param_fp)
     tree = get_internal_nodes(tree, rss, param_dct)
     tree.write(path=params.output, schema='newick')
+    tree.print_plot(show_internal_node_labels=True)
 
 
 if __name__ == "__main__":
