@@ -23,3 +23,10 @@ Stage 3:
 ```
 python stage_3_new.py -g ../data/reference_locus/igh_locus_Mar6_18.fa -c ../data/exact_pos/IGHV_exact_pos.csv -t ../data/Stage2.rooting/RAxML_bestTree.IGHV_tree.output -p ../data/Stage1_tree_IGHV/RAxML_model.txt -o test.tree
 ```
+
+
+
+State 4:
+```
+TreeViewer based on the ETE framework. http://etetoolkit.org/treeview/
+```
